@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Blog.Common.ViewModel
+﻿namespace Blog.Client.Models
 {
     public class CatalogViewModel
     {

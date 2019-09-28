@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Blog.Server.Migrations
+namespace Blog.Migrations
 {
-    public partial class initialCreate : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -37,6 +37,12 @@ namespace Blog.Server.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Posts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Posts_Catalogs_CatalogId",
+                        column: x => x.CatalogId,
+                        principalTable: "Catalogs",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -63,6 +69,11 @@ namespace Blog.Server.Migrations
                 name: "IX_Catalogs_Pri",
                 table: "Catalogs",
                 column: "Pri");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Posts_CatalogId",
+                table: "Posts",
+                column: "CatalogId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Posts_IsPage",
@@ -99,13 +110,13 @@ namespace Blog.Server.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Catalogs");
-
-            migrationBuilder.DropTable(
                 name: "PostTags");
 
             migrationBuilder.DropTable(
                 name: "Posts");
+
+            migrationBuilder.DropTable(
+                name: "Catalogs");
         }
     }
 }

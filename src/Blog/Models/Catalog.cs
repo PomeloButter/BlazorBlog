@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text.Json.Serialization;
 
-namespace Blog.Common.Entity
+namespace Blog.Client.Models
 {
     public class Catalog
     {

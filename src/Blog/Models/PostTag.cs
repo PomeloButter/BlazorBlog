@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Blog.Common.Entity
+namespace Blog.Client.Models
 {
     public class PostTag
     {

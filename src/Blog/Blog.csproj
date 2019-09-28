@@ -2,9 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-    <UserSecretsId>f1808b20-e1ae-4a5d-b2c0-ba947e48c311</UserSecretsId>
+    <UserSecretsId>644e228a-bf9c-4e5d-8c94-70c0e05773fb</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>..\..</DockerfileContext>
+    <AssemblyName>Blog</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,10 +15,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.9.5" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Blog.Common\Blog.Common.csproj" />
   </ItemGroup>
 
 </Project>

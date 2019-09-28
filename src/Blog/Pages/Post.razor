@@ -1,0 +1,15 @@
+﻿@page "/Posts"
+@inject Api Api;
+<div>
+    @_post.Content
+</div>
+
+@functions {
+    string Id { get; set; }
+    Client.Models.Post _post;
+    protected override async Task OnInitializedAsync()
+    {
+       _post=await  Api.GetPostById(Id);
+    }
+
+}
