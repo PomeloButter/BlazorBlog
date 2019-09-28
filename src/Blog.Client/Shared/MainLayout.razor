@@ -1,15 +1,9 @@
-﻿@inherits LayoutComponentBase
-
-<div class="sidebar">
-    <NavMenu />
-</div>
-
-<div class="main">
-    <div class="top-row px-4">
-        <a href="https://docs.microsoft.com/en-us/aspnet/" target="_blank">About</a>
-    </div>
-
-    <div class="content px-4">
+﻿@inherits Microsoft.AspNetCore.Components.LayoutComponentBase
+<header></header>
+<body class="dark-theme">
+    <div class="wrapper">
+        <HeaderLayout />
         @Body
+        <FooterLayout />
     </div>
-</div>
+</body>
