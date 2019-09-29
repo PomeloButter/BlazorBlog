@@ -1,5 +1,5 @@
 ﻿using System.Net.Http;
-using Blog.Client.Data;
+using Blog.Data;
 
 namespace Blog.Api
 {

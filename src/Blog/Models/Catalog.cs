@@ -1,20 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
-namespace Blog.Client.Models
+namespace Blog.Models
 {
     public class Catalog
     {
-        public Guid Id { get; set; }
-
-        [MaxLength(32)]
-        public string Url { get; set; }
-
-        public string Title { get; set; }
-
-        public int Pri { get; set; }
-     
-        public virtual ICollection<Post> Posts { get; set; } = new List<Post>();
+        public string Id { get; set; }
+        public string CategoryName { get; set; }
+        public string DisplayName { get; set; }
     }
 }

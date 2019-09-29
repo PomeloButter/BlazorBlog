@@ -1,27 +1,16 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Blog.Client.Models
+namespace Blog.Models
 {
     public class Post
     {
-        public Guid Id { get; set; }
-
-        [MaxLength(256)]
-        public string Url { get; set; }
-
+        public string Id { get; set; }
         public string Title { get; set; }
-
-        public string Summary { get; set; }
-
-        public string Content { get; set; }
-
-        public DateTime Time { get; set; }
-
-        public bool IsPage { get; set; }
-
-        [ForeignKey("Catalog")]
-        public Guid? CatalogId { get; set; }
+        public string Author { get; set; }
+        public string Url { get; set; }
+        public string Html { get; set; }
+        public string Markdown { get; set; }
+        public string CategoryId { get; set; }
+        public DateTime? CreationTime { get; set; }
     }
 }

@@ -1,0 +1,62 @@
+﻿@inject Api Api;
+@inject JSRuntime JsRuntime;
+@if (_posts != null)
+{
+    <div class="main">
+        <div class="post-wrap archive">
+            @foreach (var x in _posts)
+            {
+                <article class="archive-item">
+                    <a class="archive-item-link" href="/Posts/@x.Id">@x.Title</a>
+                    <span class="archive-item-date">@x.CreationTime</span>
+                </article>
+            }
+        </div>
+        <nav class="pagination">
+            @for (var i = 1; i <= totalPages; ++i)
+            {
+                if (p == i)
+                {
+                    <span class="page-number current">@i</span>
+                }
+                else
+                {
+                    <a class="page-number" href="@BuildLink(i)">@i</a>
+                }
+            }
+        </nav>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public int p { get; set; } = 1;
+
+    int totalPages = 1;
+
+    IEnumerable<Post>
+    _posts;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        var result = await Api.GetPostListAsync();
+        _posts = result.Data;
+        totalPages = result.TotalPage;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await OnParametersSetAsync();
+    }
+
+    private string BuildLink(int page)
+    {
+        string link = string.Empty;
+        if (page>0)
+        {
+            link = $"/Posts/{page}";
+        }
+        return link;
+    }
+
+}

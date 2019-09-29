@@ -1,16 +1,9 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace Blog.Client.Models
+﻿namespace Blog.Models
 {
     public class PostTag
     {
-        public int Id { get; set; }
-        [ForeignKey("Post")]
-        public Guid PostId { get; set; }
-        public virtual Post Post { get; set; }
-        [MaxLength(64)]
-        public string Tag { get; set; }
+        public string Id { get; set; }
+        public string PostId { get; set; }
+        public string TagId { get; set; }
     }
 }

@@ -1,7 +1,7 @@
-﻿using Blog.Client.Models;
+﻿using Blog.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Blog.Client.Data
+namespace Blog.Data
 {
     public class BlogContext : DbContext
     {
@@ -15,22 +15,31 @@ namespace Blog.Client.Data
         public DbSet<PostTag> PostTags { get; set; }
 
         public DbSet<Catalog> Catalogs { get; set; }
+        public DbSet<Tag> Tags { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<Catalog>(e => { e.HasIndex(x => x.Pri); });
+            builder.Entity<Catalog>(e =>
+            {
+                e.HasIndex(x => x.Id);
+            });
 
             builder.Entity<Post>(e =>
             {
                 e.HasIndex(x => x.Title);
-                e.HasIndex(x => x.IsPage);
-                e.HasIndex(x => x.Time);
-                e.HasIndex(x => x.Url).IsUnique();
+                e.HasIndex(x => x.Id);
+             
             });
-
-            builder.Entity<PostTag>(e => { e.HasIndex(x => x.Tag); });
+            builder.Entity<Tag>(e =>
+            {
+                e.HasIndex(x => x.Id);
+            });
+            builder.Entity<PostTag>(e =>
+            {
+                e.HasIndex(x => x.Id);
+            });
         }
     }
 }
