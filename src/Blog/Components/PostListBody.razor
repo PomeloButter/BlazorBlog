@@ -1,17 +1,22 @@
 ﻿@page "/PostListBody"
 @inject Api Api
 @inject NavigationManager NavigationManager
-@if (_posts != null)
+@if (_models != null)
 {
     <div class="main">
         <div class="post-wrap archive">
-            @foreach (var x in _posts)
+            @foreach (var item in _models)
             {
-                <article class="archive-item">
-                    <a class="archive-item-link" href="/Posts/@x.Id">@x.Title</a>
+                <h3>@item.Year</h3>
+                foreach (var post in item.Posts)
+                {
+                    <article class="archive-item">
+                        <a class="archive-item-link" href="/Posts/@post.Id">@post.Title</a>
                     
-                    <span class="archive-item-date">@x.CreationTime</span>
-                </article>
+                        <span class="archive-item-date">@post.CreationTime</span>
+                    </article>
+                }
+                
             }
         </div>
         <nav class="pagination">
@@ -37,13 +42,13 @@
     public int PageIndex { get; set; }
     int _totalPages;
 
-    IEnumerable<Post>
-    _posts;
+    IEnumerable<PostViewModel>
+    _models;
 
     protected override async Task OnParametersSetAsync()
     {
         var result = await Api.GetPostListAsync(PageIndex);
-        _posts = result.Data;
+        _models = result.Data;
         _totalPages = result.TotalPage;
         PageIndex= PageIndex == 0 ? PageIndex = 1 : PageIndex;
     }
