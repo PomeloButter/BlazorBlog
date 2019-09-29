@@ -1,9 +1,8 @@
 ﻿@page "/Posts"
-@page "/Posts/p"
-
-<PostListBody p="@p" />
+@page "/Posts/{PageIndex:int}"
+<PostListBody PageIndex="@PageIndex" />
 
 @code
 {
-    [Parameter] public int p { get; set; } = 1;
+    [Parameter] public int PageIndex { get; set; } 
 }

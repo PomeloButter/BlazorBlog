@@ -1,5 +1,6 @@
-﻿@inject Api Api;
-@inject JSRuntime JsRuntime;
+﻿@page "/PostListBody"
+@inject Api Api
+@inject NavigationManager NavigationManager
 @if (_posts != null)
 {
     <div class="main">
@@ -8,20 +9,22 @@
             {
                 <article class="archive-item">
                     <a class="archive-item-link" href="/Posts/@x.Id">@x.Title</a>
+                    
                     <span class="archive-item-date">@x.CreationTime</span>
                 </article>
             }
         </div>
         <nav class="pagination">
-            @for (var i = 1; i <= totalPages; ++i)
+            @for (var i = 1; i <= _totalPages; ++i)
             {
-                if (p == i)
+                if (PageIndex == i)
                 {
                     <span class="page-number current">@i</span>
                 }
                 else
                 {
-                    <a class="page-number" href="@BuildLink(i)">@i</a>
+                    <a class="page-number"  href="@BuildLink(i)" >@i</a>
+                 
                 }
             }
         </nav>
@@ -29,34 +32,38 @@
 }
 
 @code {
-    [Parameter]
-    public int p { get; set; } = 1;
 
-    int totalPages = 1;
+    [Parameter]
+    public int PageIndex { get; set; }
+    int _totalPages;
 
     IEnumerable<Post>
     _posts;
 
     protected override async Task OnParametersSetAsync()
     {
-        var result = await Api.GetPostListAsync();
+        var result = await Api.GetPostListAsync(PageIndex);
         _posts = result.Data;
-        totalPages = result.TotalPage;
+        _totalPages = result.TotalPage;
+        PageIndex= PageIndex == 0 ? PageIndex = 1 : PageIndex;
     }
 
     protected override async Task OnInitializedAsync()
     {
+      
         await OnParametersSetAsync();
     }
 
-    private string BuildLink(int page)
+    private string BuildLink(int pageIndex)
     {
         string link = string.Empty;
-        if (page>0)
+        if (pageIndex > 0)
         {
-            link = $"/Posts/{page}";
+            link = $"/Posts/{pageIndex}";
         }
         return link;
     }
+
+
 
 }
