@@ -11,7 +11,7 @@
                 foreach (var post in item.Posts)
                 {
                     <article class="archive-item">
-                        <a class="archive-item-link" href="/Posts/@post.Id">@post.Title</a>
+                        <a class="archive-item-link" href="@BuildPostDetailsLink(@post.Url)">@post.Title</a>
                     
                         <span class="archive-item-date">@post.CreationTime</span>
                     </article>
@@ -50,7 +50,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-      
+
         var result = await Api.GetPostListAsync(Tag,Calalog,PageIndex);
         _models = result.Data;
         _totalPages = result.TotalPage;
@@ -77,6 +77,15 @@
         return link;
     }
 
+    private string BuildPostDetailsLink(string url)
+    {
+        string link = $"/PostDetails/";
+        if (!string.IsNullOrEmpty(url))
+        {
+            link =link+ $"{url}";
+        }
+        return link;
+    }
 
 
 }

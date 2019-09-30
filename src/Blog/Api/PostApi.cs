@@ -10,9 +10,59 @@ namespace Blog.Api
 {
     public partial class Api
     {
-        public async Task<Post> GetPostByIdAsync(string id)
+        public async Task<PostDetailsModel> GetPostByIdAsync(string url)
         {
-            return await _context.Posts.SingleOrDefaultAsync(s => s.Id == id);
+            var post= await _context.Posts.SingleOrDefaultAsync(s => s.Url == url);
+            var category = await _context.Catalogs.FirstOrDefaultAsync(x => x.Id == post.CategoryId);
+            var postTags=_context.PostTags.Where(s => s.PostId == post.Id).ToList();
+            List<TagViewModel> tagViewModels=new List<TagViewModel>();
+            foreach (var postTag in postTags)
+            {
+                var tag = _context.Tags.SingleOrDefault(s => s.Id == postTag.TagId);
+                TagViewModel tagViewModel = new TagViewModel();
+                tagViewModel.DisplayName = tag.DisplayName;
+                tagViewModel.TagName = tag.TagName;
+                tagViewModels.Add(tagViewModel);
+            }
+            var previous = _context.Posts
+                .Where(x => x.CreationTime > post.CreationTime)
+                .Take(1)
+                .FirstOrDefault();
+
+            var next = _context.Posts
+                .Where(x => x.CreationTime < post.CreationTime)
+                .OrderByDescending(x => x.CreationTime)
+                .Take(1)
+                .FirstOrDefault();
+
+           return new PostDetailsModel
+           {
+               Title = post.Title,
+               Author = post.Author,
+               Url = post.Url,
+               Html = post.Html,
+               CreationTime = Convert.ToDateTime(post.CreationTime).ToString("MMMM dd, yyyy HH:mm:ss", new CultureInfo("en-us")),
+               Category =new CatalogViewModel
+               {
+                   DisplayName = category.DisplayName,
+                   CategoryName = category.CategoryName
+               },
+
+               Tags = tagViewModels,
+              
+               Previous = new PosPagedModel
+               {
+                   Title = previous?.Title,
+                   Url = previous?.Url
+               },
+               Next = new PosPagedModel
+               {
+                   Title = next?.Title,
+                   Url = next?.Url
+               }
+               
+           };
+            
         }
 
         public async Task<PagedViewModel<PostViewModel>> GetPostListAsync(string tag, string catalog,int pageIndex = 1,int pageSize = 2)
