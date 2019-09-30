@@ -1,7 +1,7 @@
 ﻿@page "/PostListBody"
 @inject Api Api
 @inject NavigationManager NavigationManager
-@if (_models != null)
+@if (_models.Count() != 0)
 {
     <div class="main">
         <div class="post-wrap archive">
@@ -34,6 +34,10 @@
             }
         </nav>
     </div>
+}
+else
+{
+    <NotDisPlayLayout/>
 }
 
 @code {

@@ -15,16 +15,16 @@ namespace Blog.Data
 
             var posts = new[]
             {
-                new Post(){Id = "1",Title = "精彩的文章标题1",Html = "文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容",CategoryId="1",CreationTime = DateTime.Parse("2017-09-02"),Url = "2017-09-02-hhh"},
-                new Post(){Id = "2",Title = "精彩的文章标题2",Html = "文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容",CategoryId="2",CreationTime = DateTime.Parse("2017-09-02"),Url = "2017-09-02-aa"},
-                new Post(){Id = "3",Title = "精彩的文章标题3",Html = "文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容",CategoryId="2",CreationTime = DateTime.Parse("2017-09-02"),Url = "2017-09-02-aa2"},
-                new Post(){Id = "4",Title = "精彩的文章标题4",Html = "文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容",CategoryId="3",CreationTime = DateTime.Parse("2018-09-02"),Url = "2018-09-02-22adawd"},
-                new Post(){Id = "5",Title = "精彩的文章标题5",Html = "文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容",CategoryId="3",CreationTime = DateTime.Parse("2018-09-02"),Url = "2018-09-02-zczs"},
-                new Post(){Id = "6",Title = "精彩的文章标题6",Html = "文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容",CategoryId="4",CreationTime = DateTime.Parse("2016-09-02"),Url = "2016-09-02-wqqwe"},
-                new Post(){Id = "7",Title = "精彩的文章标题7",Html = "文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容",CategoryId="4",CreationTime =DateTime.Parse("2016-09-02"),Url = "2016-09-02-12weqwe"},
-                new Post(){Id = "8",Title = "精彩的文章标题8",Html = "文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容",CategoryId="4",CreationTime = DateTime.Parse("2019-09-02"),Url = "2019-09-02-czczxczxc"},
-                new Post(){Id = "9",Title = "精彩的文章标题9",Html = "文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容",CategoryId="3",CreationTime = DateTime.Parse("2019-09-02"),Url = "2019-09-02-ascasdasd"},
-                new Post(){Id = "10",Title = "精彩的文章标题10",Html = "文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容",CategoryId="1",CreationTime = DateTime.Parse("2019-09-02"),Url = "2019-09-02-qdqwqeqw"},
+                new Post(){Id = "1",Author = "PomeloButter",Title = "精彩的文章标题1",Html = "文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容",CategoryId="1",CreationTime = DateTime.Parse("2017-09-02"),Url = "2017-09-02-hhh"},
+                new Post(){Id = "2",Author = "PomeloButter",Title = "精彩的文章标题2",Html = "文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容",CategoryId="2",CreationTime = DateTime.Parse("2017-09-02"),Url = "2017-09-02-aa"},
+                new Post(){Id = "3",Author = "PomeloButter",Title = "精彩的文章标题3",Html = "文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容",CategoryId="2",CreationTime = DateTime.Parse("2017-09-02"),Url = "2017-09-02-aa2"},
+                new Post(){Id = "4",Author = "PomeloButter",Title = "精彩的文章标题4",Html = "文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容",CategoryId="3",CreationTime = DateTime.Parse("2018-09-02"),Url = "2018-09-02-22adawd"},
+                new Post(){Id = "5",Author = "PomeloButter",Title = "精彩的文章标题5",Html = "文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容",CategoryId="3",CreationTime = DateTime.Parse("2018-09-02"),Url = "2018-09-02-zczs"},
+                new Post(){Id = "6",Author = "PomeloButter",Title = "精彩的文章标题6",Html = "文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容",CategoryId="4",CreationTime = DateTime.Parse("2016-09-02"),Url = "2016-09-02-wqqwe"},
+                new Post(){Id = "7",Author = "PomeloButter",Title = "精彩的文章标题7",Html = "文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容",CategoryId="4",CreationTime =DateTime.Parse("2016-09-02"),Url = "2016-09-02-12weqwe"},
+                new Post(){Id = "8",Author = "PomeloButter",Title = "精彩的文章标题8",Html = "文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容",CategoryId="4",CreationTime = DateTime.Parse("2019-09-02"),Url = "2019-09-02-czczxczxc"},
+                new Post(){Id = "9",Author = "PomeloButter",Title = "精彩的文章标题9",Html = "文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容",CategoryId="3",CreationTime = DateTime.Parse("2019-09-02"),Url = "2019-09-02-ascasdasd"},
+                new Post(){Id = "10",Author = "PomeloButter",Title = "精彩的文章标题10",Html = "文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容文章的内容",CategoryId="1",CreationTime = DateTime.Parse("2019-09-02"),Url = "2019-09-02-qdqwqeqw"},
             };
             foreach (var s in posts) context.Posts.Add(s);
 
@@ -45,11 +45,11 @@ namespace Blog.Data
 
             var catalogs = new[]
             {
-                new Catalog(){Id = "1",CategoryName = "aaa",DisplayName = "aaa"},
-                new Catalog(){Id = "2",CategoryName = "bbb",DisplayName = "bbb"},
-                new Catalog(){Id = "3",CategoryName = "ccc",DisplayName = "ccc"},
-                new Catalog(){Id = "4",CategoryName = "ddd",DisplayName = "ddd"},
-                new Catalog(){Id = "5",CategoryName = "eee",DisplayName = "eee"},
+                new Catalog(){Id = "1",CategoryName = "comic",DisplayName = "comic"},
+                new Catalog(){Id = "2",CategoryName = "technology",DisplayName = "technology"},
+                new Catalog(){Id = "3",CategoryName = "daily",DisplayName = "daily"},
+                new Catalog(){Id = "4",CategoryName = "frontEnd",DisplayName = "frontEnd"},
+                new Catalog(){Id = "5",CategoryName = "backend",DisplayName = "backend"},
             };
             foreach (var e in catalogs) context.Catalogs.Add(e);
 

@@ -1,73 +1,70 @@
 ﻿@page "/PostDetails/{Url}"
 @inject Api Api
-
-    <div class="main">
-        <div class="loader"></div>
-        <div class="container">
-            <article class="post-wrap">
-               
-                    <header class="post-header">
-                        <h1 class="post-title">@Model.Title</h1>
-                        <div class="post-meta">
-                            Author: <a itemprop="author" rel="author" href="javascript:;">@Model.Author</a>
-                            <span class="post-time">
-                                Date: <a href="javascript:;">@Model.CreationTime</a>
-                            </span>
-                           
-                               @if (Model.Category != null)
-                               { <span class="post-category">
-                                   Category:<a href="/Posts/Categories/@Model.Category.DisplayName/"></a>
-                                 </span>
-                               }
-                             
-                          
-                        </div>
-                    </header>
-                    <div class="post-content" id="content">
-                      @Model.Html
-                    </div>
-                    <section class="post-tags">
-                        <div>
-                            <span>Tag(s):</span>
-                            <span class="tag">
-                                @foreach (var item in Model.Tags)
-                                {
-                                    <a href="/Posts/Tags/@item.DisplayName/"># @item.TagName</a>
-                                }                                                         
-                            </span>
-                        </div>
-                        <div>
-                            <a href="javascript:window.history.back();">back</a>
-                            <span>· </span>
-                            <a href="/">home</a>
-                        </div>
-                    </section>
-                    <section class="post-nav">
-                        @if (Model.Previous!=null)
+<div class="main">
+    <div class="container">
+        <article class="post-wrap">
+            <header class="post-header">
+                <h1 class="post-title">@Model.Title</h1>
+                <div class="post-meta">
+                    Author: <a itemprop="author" rel="author" href="javascript:void(0);">@Model.Author</a>
+                    <span class="post-time">
+                        Date: <a href="javascript:;">@Model.CreationTime</a>
+                    </span>
+                    @if (Model.Category != null)
+                    {
+                        <span class="post-category">
+                            Category:<a href="/Posts/Categories/@Model.Category.DisplayName/@PageIndex">@Model.Category.CategoryName</a>
+                        </span>
+                    }
+                </div>
+            </header>
+            <div class="post-content" id="content">
+                @Model.Html
+            </div>
+            <section class="post-tags">
+                <div>
+                    <span>Tag(s):</span>
+                    <span class="tag">
+                        @foreach (var item in Model.Tags)
                         {
-                            <a class="prev" rel="prev" href="/Posts/@Model.Previous.Url">@Model.Previous.Title</a>
+                            <a href="/Posts/Tags/@item.DisplayName/@PageIndex"># @item.TagName</a>
                         }
-                   
-                         @if (Model.Next!=null)
-                         {
-                             <a class="next" rel="next" href="/Posts/@Model.Next.Url">@Model.Next.Title</a>
-                         }
-                    
-                    
-                    </section>
-              
-            </article>
-        </div>
+                    </span>
+                </div>
+                <div>
+                    <a href="javascript:window.history.back();">back</a>
+                    <span>· </span>
+                    <a href="/">home</a>
+                </div>
+            </section>
+            <section class="post-nav">
+                @if (Model.Previous != null)
+                {
+                    <a class="prev" rel="prev" href="/PostDetails/@Model.Previous.Url">@Model.Previous.Title</a>
+                }
+
+                @if (Model.Next != null)
+                {
+                    <a class="next" rel="next" href="/PostDetails/@Model.Next.Url">@Model.Next.Title</a>
+                }
+            </section>
+        </article>
     </div>
+</div>
 
 @code {
-    [Parameter] public string Url { get; set; }
+
+    [Parameter]
+    public string Url { get; set; }
+
+    [Parameter]
+    public int PageIndex { get; set; } = 1;
 
     public PostDetailsModel Model;
 
     protected override async Task OnInitializedAsync()
     {
-        Model=  await Api.GetPostByIdAsync(Url);
+        Model = await Api.GetPostByIdAsync(Url);
     }
 
 }
