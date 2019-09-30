@@ -39,7 +39,8 @@
 @code {
     [Parameter]
     public string Tag { get; set; }
-
+    [Parameter]
+    public string Calalog { get; set; }
     [Parameter]
     public int PageIndex { get; set; }
 
@@ -55,6 +56,7 @@
         _totalPages = result.TotalPage;
         PageIndex= PageIndex == 0 ? PageIndex = 1 : PageIndex;
         Tag = Tag;
+        Calalog = Calalog;
     }
 
     private string BuildLink(int pageIndex)
@@ -62,7 +64,7 @@
         string link = $"/Posts/";
         if (!string.IsNullOrEmpty(Tag))
         {
-            link =link+ $"{Tag}/";
+            link =link+ $"Tags/{Tag}/";
         }
         if (pageIndex > 0)
         {

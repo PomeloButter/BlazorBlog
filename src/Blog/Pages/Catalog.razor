@@ -31,4 +31,19 @@
 
         Models = await Api.GetCatalogListAsync();
     }
+
+    private string BuildLink(string displayName,int pageIndex)
+    {
+        string link = $"/Posts/";
+        if (!string.IsNullOrEmpty(displayName))
+        {
+            link = link + $"{displayName}/";
+        }
+        pageIndex = pageIndex == 0 ? 1 : pageIndex;
+        if (pageIndex > 0)
+        {
+            link = link+$"{pageIndex}";
+        }
+        return link;
+    }
 }
