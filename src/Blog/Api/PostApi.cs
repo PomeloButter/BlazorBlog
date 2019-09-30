@@ -15,8 +15,7 @@ namespace Blog.Api
             return await _context.Posts.SingleOrDefaultAsync(s => s.Id == id);
         }
 
-        public async Task<PagedViewModel<PostViewModel>> GetPostListAsync(string tag, int pageIndex = 1,
-            int pageSize = 2)
+        public async Task<PagedViewModel<PostViewModel>> GetPostListAsync(string tag, string catalog,int pageIndex = 1,int pageSize = 2)
         {
             var list = new List<Post>();
             var count = 0;
@@ -30,14 +29,21 @@ namespace Blog.Api
                     .ToList();
                 count = postTags.Count;
             }
+            else if (!string.IsNullOrEmpty(catalog))
+            {
+                var catalogEntity = await _context.Catalogs.SingleOrDefaultAsync(s => s.DisplayName == catalog);
+                 list = _context.Posts.Where(s => s.CategoryId == catalogEntity.Id).ToList();
+                 count = list.Count;
+                list =list.OrderByDescending(x => x.CreationTime).Skip((pageIndex - 1) * pageSize).Take(pageSize)
+                     .ToList();
+               
+            }
             else
             {
                 list = _context.Posts.OrderByDescending(x => x.CreationTime).Skip((pageIndex - 1) * pageSize)
                     .Take(pageSize).ToList();
                 count = _context.Posts.Count();
             }
-
-           
             var pageCount = (count + pageSize - 1) / pageSize;
             var postModels = list.Select(x => new PostModel
             {

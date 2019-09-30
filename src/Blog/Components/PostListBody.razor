@@ -51,7 +51,7 @@
     protected override async Task OnInitializedAsync()
     {
       
-        var result = await Api.GetPostListAsync(Tag,PageIndex);
+        var result = await Api.GetPostListAsync(Tag,Calalog,PageIndex);
         _models = result.Data;
         _totalPages = result.TotalPage;
         PageIndex= PageIndex == 0 ? PageIndex = 1 : PageIndex;
@@ -65,6 +65,10 @@
         if (!string.IsNullOrEmpty(Tag))
         {
             link =link+ $"Tags/{Tag}/";
+        }
+        else if (!string.IsNullOrEmpty(Calalog))
+        {
+            link = link + $"Categories/{Calalog}/";
         }
         if (pageIndex > 0)
         {

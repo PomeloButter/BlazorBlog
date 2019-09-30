@@ -9,7 +9,7 @@
                 {
                     <div class="card-item">
                         <div class="categories">
-                            <a href="/category/@item.DisplayName/">
+                            <a href="@BuildLink(@item.DisplayName,@PageIndex)">
                                 <h3>
                                     <i class="iconfont iconcode" style="padding-right:3px"></i>
                                     @item.CategoryName
@@ -26,6 +26,7 @@
 @code {
 
     public IList<CatalogViewModel> Models;
+    [Parameter] public int PageIndex { get; set; } 
     protected override async Task OnInitializedAsync()
     {
 
@@ -37,7 +38,7 @@
         string link = $"/Posts/";
         if (!string.IsNullOrEmpty(displayName))
         {
-            link = link + $"{displayName}/";
+            link = link + $"Categories/{displayName}/";
         }
         pageIndex = pageIndex == 0 ? 1 : pageIndex;
         if (pageIndex > 0)
