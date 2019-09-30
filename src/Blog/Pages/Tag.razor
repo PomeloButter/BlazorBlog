@@ -7,7 +7,7 @@
                 <div class="tag-cloud-tags">                                        
                     @foreach (var item in Models)
                     {
-                        <a href="/tag/@item.DisplayName/">@item.TagName<small>(@item.Count)</small></a>
+                        <a href="@BuildLink(@item.DisplayName,@PageIndex)">@item.TagName<small>(@item.Count)</small></a>
                     }
                 </div>
             </div>
@@ -16,9 +16,23 @@
 @code {
 
     public IList<TagViewModel> Models;
+    [Parameter] public int PageIndex { get; set; } 
     protected  override async Task OnInitializedAsync()
     {
       Models= await Api.GetTagListAsync();
     }
-
+    private string BuildLink(string displayName,int pageIndex)
+    {
+        string link = $"/Posts/";
+        if (!string.IsNullOrEmpty(displayName))
+        {
+            link = link + $"{displayName}/";
+        }
+        pageIndex = pageIndex == 0 ? 1 : pageIndex;
+        if (pageIndex > 0)
+        {
+            link = link+$"{pageIndex}";
+        }
+        return link;
+    }
 }

@@ -37,34 +37,36 @@
 }
 
 @code {
+    [Parameter]
+    public string Tag { get; set; }
 
     [Parameter]
     public int PageIndex { get; set; }
+
     int _totalPages;
 
-    IEnumerable<PostViewModel>
-    _models;
-
-    protected override async Task OnParametersSetAsync()
-    {
-        var result = await Api.GetPostListAsync(PageIndex);
-        _models = result.Data;
-        _totalPages = result.TotalPage;
-        PageIndex= PageIndex == 0 ? PageIndex = 1 : PageIndex;
-    }
+    IEnumerable<PostViewModel> _models;
 
     protected override async Task OnInitializedAsync()
     {
       
-        await OnParametersSetAsync();
+        var result = await Api.GetPostListAsync(Tag,PageIndex);
+        _models = result.Data;
+        _totalPages = result.TotalPage;
+        PageIndex= PageIndex == 0 ? PageIndex = 1 : PageIndex;
+        Tag = Tag;
     }
 
     private string BuildLink(int pageIndex)
     {
-        string link = string.Empty;
+        string link = $"/Posts/";
+        if (!string.IsNullOrEmpty(Tag))
+        {
+            link =link+ $"{Tag}/";
+        }
         if (pageIndex > 0)
         {
-            link = $"/Posts/{pageIndex}";
+            link = link+$"{pageIndex}";
         }
         return link;
     }
