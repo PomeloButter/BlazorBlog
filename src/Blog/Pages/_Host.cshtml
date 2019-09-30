@@ -5,21 +5,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="keywords" content="一个专注的段子手程序员">
+    <meta name="description" content="Never Give Up">
     <title>Pomelobutter Blog</title>
+    <link rel="icon" href="https://avatars1.githubusercontent.com/u/34675102?s=460&v=4">
     <base href="~/" />
-   
+
     <link href="css/site.css" rel="stylesheet" />
     <link href="css/style.css" rel="stylesheet" />
     <link href="css/admin.css" rel="stylesheet" />
     <script src="/js/common.js"></script>
+    <script src="/live2d/L2Dwidget.min.js"></script>
 </head>
 <body>
     <app>
         @(await Html.RenderComponentAsync<App>(RenderMode.ServerPrerendered))
     </app>
-
-  
 </body>
 </html>
